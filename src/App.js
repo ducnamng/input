@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [showInput, setShowInput] = useState(true);
+  const [text, setText] = useState("");
+
+  const handleShowInput = (e) => {
+    setShowInput(!showInput);
+  };
+
+  const isTextInput = (e) => {
+    setText(e.taget.value);
+    console.log(setText);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ display: "flex", justifyContent: "center" }}>
+      {showInput ? (
+        <input placeholder="wolfoo games" type="text" onChange={isTextInput} />
+      ) : (
+        <p>{text}</p>
+      )}
+
+      <button onClick={handleShowInput}>edit</button>
     </div>
   );
 }
